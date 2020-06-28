@@ -3,6 +3,7 @@ import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake'
 import { Text, View, TouchableHighlight } from 'react-native'
 import tailwind from 'tailwind-rn'
 import { Audio } from 'expo-av'
+import { FontAwesome } from '@expo/vector-icons'
 
 const Button = ({ children, onClick }) => (
   <TouchableHighlight
@@ -29,6 +30,7 @@ export default function App() {
   const [pauseClock, setPauseClock] = useState(10)
   const [running, setRunning] = useState(false)
   const [pause, setPause] = useState(false)
+  const [manuelPause, setManuelPause] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -50,6 +52,8 @@ export default function App() {
           )
         setRunning(false)
         setClock(10)
+      } else if (manuelPause) {
+        console.log('do manuel Pause')
       } else if (pauseClock === 0) {
         setPause(false)
         setPauseClock(10)
@@ -70,8 +74,8 @@ export default function App() {
     }, 1000)
 
     return () => clearInterval(interval)
-  }, [pause, pauseClock, clock, running])
-  console.log({ running, clock, pause, pauseClock })
+  }, [pause, pauseClock, clock, running, manuelPause])
+
   return (
     <View style={tailwind('flex-1 items-center justify-center')}>
       {!running ? (
@@ -94,7 +98,9 @@ export default function App() {
               setClock(clock * 60 - 1)
             }}
           >
-            <Text style={tailwind('text-white text-4xl')}>start</Text>
+            <Text style={tailwind('text-white p-2')}>
+              <FontAwesome name="play" size={32} />
+            </Text>
           </Button2>
         </>
       ) : (
@@ -110,16 +116,46 @@ export default function App() {
                 (clock % 60).toString().padStart(2, '0')}
             </Text>
           )}
-          <Button2
-            onClick={() => {
-              setRunning(false)
-              setClock(10)
-              setPause(false)
-              setPauseClock(10)
-            }}
-          >
-            <Text style={tailwind('text-white text-4xl')}>stop</Text>
-          </Button2>
+          <View style={tailwind('flex flex-row')}>
+            {!manuelPause ? (
+              <View style={tailwind('mr-12')}>
+                <Button2
+                  onClick={() => {
+                    setManuelPause(true)
+                  }}
+                >
+                  <Text style={tailwind('text-white p-2')}>
+                    <FontAwesome name="pause" size={32} />
+                  </Text>
+                </Button2>
+              </View>
+            ) : (
+              <View style={tailwind('mr-12')}>
+                <Button2
+                  onClick={() => {
+                    setManuelPause(false)
+                  }}
+                >
+                  <Text style={tailwind('text-white p-2')}>
+                    <FontAwesome name="play" size={32} />
+                  </Text>
+                </Button2>
+              </View>
+            )}
+            <Button2
+              onClick={() => {
+                setRunning(false)
+                setClock(10)
+                setPause(false)
+                setManuelPause(false)
+                setPauseClock(10)
+              }}
+            >
+              <Text style={tailwind('text-white p-2')}>
+                <FontAwesome name="stop" size={32} />
+              </Text>
+            </Button2>
+          </View>
         </>
       )}
     </View>

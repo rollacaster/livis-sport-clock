@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo/vector-icons": "^10.2.0",
     "date-fns": "^2.14.0",
     "expo": "~37.0.3",
     "expo-av": "~8.1.0",

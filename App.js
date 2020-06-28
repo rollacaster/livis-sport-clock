@@ -33,6 +33,10 @@ export default function App() {
   const [manuelPause, setManuelPause] = useState(false)
 
   useEffect(() => {
+    Audio.setAudioModeAsync({ playsInSilentModeIOS: true })
+  }, [])
+
+  useEffect(() => {
     const interval = setInterval(() => {
       if (clock === 0) {
         deactivateKeepAwake()

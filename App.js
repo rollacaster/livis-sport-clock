@@ -26,7 +26,7 @@ const Button2 = ({ children, onClick }) => (
 )
 
 function Counter() {
-  const [clock, setClock] = useState(10)
+  const [clock, setClock] = useState(5)
   const [pauseClock, setPauseClock] = useState(10)
   const [running, setRunning] = useState(false)
   const [pause, setPause] = useState(false)
@@ -149,7 +149,7 @@ function Counter() {
             <Button2
               onClick={() => {
                 setRunning(false)
-                setClock(10)
+                setClock(5)
                 setPause(false)
                 setManuelPause(false)
                 setPauseClock(10)

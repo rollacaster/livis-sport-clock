@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake'
-import { Text, View, TouchableHighlight } from 'react-native'
+import { SafeAreaView, Text, View, TouchableHighlight } from 'react-native'
 import tailwind from 'tailwind-rn'
 import { Audio } from 'expo-av'
 import { FontAwesome } from '@expo/vector-icons'
@@ -25,7 +25,7 @@ const Button2 = ({ children, onClick }) => (
   </TouchableHighlight>
 )
 
-export default function App() {
+function Counter() {
   const [clock, setClock] = useState(10)
   const [pauseClock, setPauseClock] = useState(10)
   const [running, setRunning] = useState(false)
@@ -42,16 +42,16 @@ export default function App() {
         deactivateKeepAwake()
 
         Audio.Sound.createAsync(require('./assets/wistle.wav'), {
-          shouldPlay: true
+          shouldPlay: true,
         })
           .then(() =>
             Audio.Sound.createAsync(require('./assets/wistle.wav'), {
-              shouldPlay: true
+              shouldPlay: true,
             })
           )
           .then(() =>
             Audio.Sound.createAsync(require('./assets/wistle.wav'), {
-              shouldPlay: true
+              shouldPlay: true,
             })
           )
         setRunning(false)
@@ -63,13 +63,13 @@ export default function App() {
         setPauseClock(10)
         setClock(clock - 1)
         Audio.Sound.createAsync(require('./assets/wistle.wav'), {
-          shouldPlay: true
+          shouldPlay: true,
         })
       } else if (pause) {
         setPauseClock(pauseClock - 1)
       } else if (running && clock % 60 === 0) {
         Audio.Sound.createAsync(require('./assets/wistle.wav'), {
-          shouldPlay: true
+          shouldPlay: true,
         })
         setPause(true)
       } else if (running) {
@@ -163,5 +163,20 @@ export default function App() {
         </>
       )}
     </View>
+  )
+}
+
+export default function App() {
+  return (
+    <SafeAreaView style={tailwind('flex-1 bg-orange-400')}>
+      <View
+        style={tailwind('p-3 flex-row justify-center bg-orange-400 w-full')}
+      >
+        <Text style={tailwind('text-3xl text-white')}>Livi's Sport Clock</Text>
+      </View>
+      <View style={tailwind('flex-1 bg-white')}>
+        <Counter />
+      </View>
+    </SafeAreaView>
   )
 }

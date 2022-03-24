@@ -1,0 +1,5 @@
+* Livi's sport clock
+Sports timer to track when to change your exercise
+** Screenshots
+[[./docs/screenshots/home.png]]
+[[./docs/screenshots/timer.png]]

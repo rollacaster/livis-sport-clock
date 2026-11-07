@@ -1,5 +1,17 @@
-* Livi's sport clock
-Sports timer to track when to change your exercise
-** Screenshots
-[[./docs/screenshots/home.png]]
-[[./docs/screenshots/timer.png]]
+* Livi's Sport Clock
+Interval timer for workouts: a whistle tells you when to change your exercise.
+
+- Set rounds, exercise length and rest length (saved on the device)
+- Whistle at every change, three whistles at the end
+- Keeps the screen awake while running (Screen Wake Lock API, Safari 16.4+)
+- Works offline and can be added to the iPhone home screen
+
+** Development
+Plain HTML/CSS/JS in =site/=, no build step:
+#+begin_src sh
+python3 -m http.server -d site 8000
+#+end_src
+
+** Deployment
+=.github/workflows/pages.yml= publishes =site/= to GitHub Pages on every push to =master=.
+One-time setup: repo Settings → Pages → Source: "GitHub Actions".

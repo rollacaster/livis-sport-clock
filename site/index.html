@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#fb923c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Sport Clock">
+  <title>Livi's Sport Clock</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><h1>Livi's Sport Clock</h1></header>
+
+  <main>
+    <section id="setup">
+      <div class="setting">
+        <span class="label">Rounds</span>
+        <div class="stepper">
+          <button type="button" data-step="rounds" data-delta="-1" aria-label="Fewer rounds">−</button>
+          <output id="rounds"></output>
+          <button type="button" data-step="rounds" data-delta="1" aria-label="More rounds">+</button>
+        </div>
+      </div>
+      <div class="setting">
+        <span class="label">Exercise</span>
+        <div class="stepper">
+          <button type="button" data-step="work" data-delta="-5" aria-label="Shorter exercise">−</button>
+          <output id="work"></output>
+          <button type="button" data-step="work" data-delta="5" aria-label="Longer exercise">+</button>
+        </div>
+      </div>
+      <div class="setting">
+        <span class="label">Rest</span>
+        <div class="stepper">
+          <button type="button" data-step="rest" data-delta="-5" aria-label="Shorter rest">−</button>
+          <output id="rest"></output>
+          <button type="button" data-step="rest" data-delta="5" aria-label="Longer rest">+</button>
+        </div>
+      </div>
+      <p id="total" class="hint"></p>
+      <button type="button" id="start" class="main" aria-label="Start">
+        <svg viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>
+      </button>
+    </section>
+
+    <section id="run" hidden>
+      <p id="phase" class="phase"></p>
+      <p id="time" class="time"></p>
+      <p id="round" class="hint"></p>
+      <div class="controls">
+        <button type="button" id="pause" class="main" aria-label="Pause">
+          <svg class="i-pause" viewBox="0 0 24 24"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+          <svg class="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8z"/></svg>
+        </button>
+        <button type="button" id="stop" class="main" aria-label="Stop">
+          <svg viewBox="0 0 24 24"><path d="M5 5h14v14H5z"/></svg>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer id="awake" class="hint"></footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
